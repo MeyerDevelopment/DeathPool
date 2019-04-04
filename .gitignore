@@ -1,1 +1,8 @@
+*.class
+*.project
+*persistence.xml
+.settings
+.classpath
+/build/
+/target/
 application.properties
