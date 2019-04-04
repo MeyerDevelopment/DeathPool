@@ -3,6 +3,7 @@
 *persistence.xml
 .settings
 .classpath
+/bin/
 /build/
 /target/
 application.properties
