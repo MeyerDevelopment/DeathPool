@@ -1,13 +1,17 @@
 -- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
--- Host: localhost    Database: gotdeathpool
+
+-- Host: localhost    Database: gotDeathPool
+
 -- ------------------------------------------------------
 -- Server version	8.0.13
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+
  SET NAMES utf8 ;
+
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -16,13 +20,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `character`
+
+-- Table structure for table `characters`
 --
 
-DROP TABLE IF EXISTS `character`;
+DROP TABLE IF EXISTS `characters`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `character` (
+CREATE TABLE `characters` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   `status` varchar(20) NOT NULL,
@@ -31,12 +36,13 @@ CREATE TABLE `character` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `character`
+
+-- Dumping data for table `characters`
 --
 
-LOCK TABLES `character` WRITE;
-/*!40000 ALTER TABLE `character` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character` ENABLE KEYS */;
+LOCK TABLES `characters` WRITE;
+/*!40000 ALTER TABLE `characters` DISABLE KEYS */;
+/*!40000 ALTER TABLE `characters` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -90,9 +96,6 @@ LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Dumping events for database 'gotdeathpool'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -103,4 +106,6 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-08 17:41:05
+
+-- Dump completed on 2019-04-07 17:00:34
+
