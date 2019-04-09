@@ -1,0 +1,9 @@
+create database gotDeathPool;
+
+use gotDeathPool;
+
+create table characters ( id int auto_increment not null, name varchar(20) not null, primary key (id) );
+
+create table user ( id int auto_increment not null, fname varchar(20) not null, lname varchar(30) not null, email varchar(50) not null unique, admin boolean, primary key (id) );
+
+create table deathpool ( userid int not null, characterid int not null, status varchar(20) not null, primary key (userid, characterid), foreign key (userid) references user (id), foreign key (characterid) references characters (id) );
