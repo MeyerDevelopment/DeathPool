@@ -4,8 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="characters")
 public class Character {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +19,8 @@ public class Character {
 		super();
 	}
 
-	public Character(int id, String name, String status) {
+	public Character(String name, String status) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.status = status;
 	}
