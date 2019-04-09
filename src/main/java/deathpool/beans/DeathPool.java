@@ -1,15 +1,20 @@
 package deathpool.beans;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
+@IdClass(CompKey.class)
 public class DeathPool {
 	
+	@Id
 	@ManyToOne
 	@JoinColumn(name="userid")
 	private User user;
+	@Id
 	@ManyToOne
 	@JoinColumn(name="characterid")
 	private Character character;
