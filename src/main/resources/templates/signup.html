@@ -17,6 +17,23 @@
 			text-decoration: none;
 		}
 	</style>
+	<script>
+		 function validateInput() {
+			var fname = document.f.fname.value;
+			var lname = document.f.lname.value;
+			var email = document.f.email.value;
+			
+			if (fname == ''){
+				alert('Please enter a first name');
+			} else if (lname == ''){
+				alert('Please enter a last name');
+			} else if (email == ''){
+				alert('Please enter an email');
+			} else {
+				document.f.submit();
+			}
+		}
+	</script>
 </head>
 <body>
 
@@ -52,19 +69,38 @@
 		<div class="row">
 			<div class="col-12" style="text-align: center;">
 				<h1>Sign Up</h1>
-				
+				<div>
+					<form class="row" name='f' th:object="${newUser}" th:action="@{/inputUser}" method='POST'>
+						<div class="col-4">
+							<div class="form-group">
+								<label for="fname">First Name:</label>
+								<input class="form-control" name="fname" >
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="form-group">
+								<label for="lname">Last Name:</label>
+								<input class="form-control" name="lname" >
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="form-group">
+								<label for="email">E-mail:</label>
+								<input class="form-control" name="email" type="email">
+							</div>
+						</div>
+						<div style="text-align: center" class="col-lg-4 col-sm-6 col-12">
+							
+						</div>
+					</form>
+					<button class="btn btn primary" onclick="validateInput()">Submit</button>
+					<a href="/viewResults"><button class="btn">View all Users</button></a>	
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<form name='f' th:object="${newUser}" th:action="@{/inputUser}"
-	method='POST'>
-	First Name: <input name="fname" size="20"> <br />
-	Last Name: <input name="lname" size="10"><br />
-	E-mail: <input name="email" size="20"><br />
-	<input name="submit" type="submit" value="submit" />
-	</form>
-	<a href="viewAll">View all Users</a>
+	
 
 
 
