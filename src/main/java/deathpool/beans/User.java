@@ -23,6 +23,10 @@ public class User {
 		this.email = email;
 		this.admin = false;
 	}
+	
+	public User() {
+		this.admin = false;
+	}
 
 	public int getId() {
 		return id;
