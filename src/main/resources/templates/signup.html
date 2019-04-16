@@ -18,20 +18,81 @@
 		}
 	</style>
 	<script>
-		 function validateInput() {
-			var fname = document.f.fname.value;
-			var lname = document.f.lname.value;
-			var email = document.f.email.value;
-			
-			if (fname == ''){
+	 	function validateInput(){
+			const fname = document.f.fname;
+			const lname = document.f.lname;
+			const email = document.f.email;
+			const passwordMatch = doPasswordsMatch();
+			const passwordStrength = testPasswordStrength();
+			const emailTest = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	      	
+			let successful = true;
+
+			if (fname.value == '') {
 				alert('Please enter a first name');
-			} else if (lname == ''){
+				fname.focus();
+				successful = false;
+			} else if (lname.value == '') {
 				alert('Please enter a last name');
-			} else if (email == ''){
-				alert('Please enter an email');
-			} else {
-				document.f.submit();
-			}
+				lname.focus();
+				successful = false;
+			} else if (email.value.length === 0) {
+		        alert('Please enter an Email');
+		        email.focus();
+		        successful = false;
+	      	} else if (!emailTest.test(String(email.value).toLowerCase())) {
+		        alert('Please Enter a Valid Email');
+		        email.focus();
+		        successful = false;		        
+	      	} else if (!passwordMatch) {
+	      		alert('Passwords must match');
+	      		successful = false;
+	      	} else if (!passwordStrength) {
+	      		alert("Password isn't strong enough.");
+	      		successful = false;
+	      	} 
+	      			
+      		if (successful){
+	        	alert('Submitted Successfully!');
+	        	document.f.submit();
+	      	}
+			
+		}
+	 	
+	 	function doPasswordsMatch(){
+	 		const password1 = document.querySelector('#password');
+ 			const password2 = document.querySelector('#passwordConf');
+ 			const pswdErr = document.querySelector('.pswdErr2');
+ 			
+ 			if (password1.value != '' && password1.value == password2.value){
+ 				pswdErr.style.display = 'none';
+ 				return true;
+ 			} else {
+ 				pswdErr.style.display = 'block';
+ 				return false;
+ 			}
+	 	}
+	 	
+	 	function testPasswordStrength(){
+	 		const password = document.querySelector('#password').value;
+	 		const pswdRegex = /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$/;
+	 		const pswdErr = document.querySelector('.pswdErr1');
+	 		
+	 		if (pswdRegex.test(String(password))){
+	 			pswdErr.style.display = 'none';
+ 				return true;
+ 			} else {
+ 				pswdErr.style.display = 'block';
+ 				return false;
+ 			}
+	 	}
+		
+	 	window.onload = function(){
+	 		const password1 = document.querySelector('#password');
+		  	password1.oninput = testPasswordStrength;
+		  	
+		  	const password2 = document.querySelector('#passwordConf');
+		  	password2.oninput = doPasswordsMatch;
 		}
 	</script>
 </head>
@@ -55,47 +116,67 @@
 	      </li>
 	    <li>
           <a href="../inputUser"><button class="btn btn-dark d-sm-block d-lg-none d-xl-none">Sign Up</button></a>
-          <a href="/login.html"><button class="btn btn-dark d-sm-block d-lg-none d-xl-none">Login</button></a>
+          <a href="../login"><button class="btn btn-dark d-sm-block d-lg-none d-xl-none">Login</button></a>
         </li>
       </ul>
     </div>
     <a href="../inputUser"><button class="btn btn-dark  hidesmall d-sm-none d-xl-block" >Sign Up</button></a>&nbsp;
-    <a href="/login.html"><button class="btn btn-dark hidesmall d-sm-none d-xl-block" >Login</button></a>
+    <a href="../login"><button class="btn btn-dark hidesmall d-sm-none d-xl-block" >Login</button></a>
 	</nav>
 	<!-- nav menu end --->
 
 
 	<div class="container">
-		<div class="row">
-			<div class="col-12" style="text-align: center;">
+		<form  name='f' th:object="${newUser}" th:action="@{/inputUser}" method='POST'>
+			<div class="row justify-content-center">
+			
+				<div class="col-3">
 				<h1>Sign Up</h1>
-				<div>
-					<form class="row" name='f' th:object="${newUser}" th:action="@{/inputUser}" method='POST'>
-						<div class="col-4">
-							<div class="form-group">
-								<label for="fname">First Name:</label>
-								<input class="form-control" name="fname" >
-							</div>
-						</div>
-						<div class="col-4">
-							<div class="form-group">
-								<label for="lname">Last Name:</label>
-								<input class="form-control" name="lname" >
-							</div>
-						</div>
-						<div class="col-4">
-							<div class="form-group">
-								<label for="email">E-mail:</label>
-								<input class="form-control" name="email" type="email">
-							</div>
-						</div>
-						<div style="text-align: center" class="col-lg-4 col-sm-6 col-12">
-							
-						</div>
-					</form>
-					<button class="btn btn primary" onclick="validateInput()">Submit</button>
-					<a href="/viewResults"><button class="btn">View all Users</button></a>	
+					<div class="form-group">
+						<label for="fname">First Name:</label>
+						<input class="form-control" name="fname" >
+					</div>
 				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-3">
+					<div class="form-group">
+						<label for="lname">Last Name:</label>
+						<input class="form-control" name="lname" >
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-3">
+					<div class="form-group">
+						<label for="email">E-mail:</label>
+						<input class="form-control" name="email" type="email">
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-3">
+					<div class="form-group">
+						<label for="password">Password:</label>
+						<input class="form-control" id="password" name="password" type="password">
+						<small class="pswdErr1" style="color: red; display:none;">Requires at least:<br>One uppercase and lowercase letter<br>One number and one special character<br>Eight characters</small>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-3">
+					<div class="form-group">
+						<label for="passwordConf">Confirm Password:</label>
+						<input class="form-control" id="passwordConf" name="passwordConf" type="password">
+						<small class="pswdErr2" style="color:red; display:none;">These passwords must match.</small>
+					</div>
+				</div>
+			</div>
+		</form>
+		<div class="row justify-content-center">
+			<div class="col-3">
+				<button class="btn btn primary" onclick="validateInput()">Submit</button>
+				<a href="/viewResults"><button class="btn">View all Users</button></a>
 			</div>
 		</div>
 	</div>
