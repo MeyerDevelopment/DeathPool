@@ -27,6 +27,12 @@ public class WebController {
 			model.addAttribute("newUser", u);
 			return "signup";
 		}
+	
+	@GetMapping("/login")
+	public String voteNow(Model model) {
+		
+		return "login";
+	}
 	//enters new user from signup.html into user database and goes to results.html when submit button
 	//on signup.html is pressed
 	@PostMapping("/inputUser")
