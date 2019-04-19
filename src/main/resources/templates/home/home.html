@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Game of Thrones Season 8 Death Pool</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+	<style>
+		.shadowed {
+			-webkit-box-shadow: 0px 2px 4px 1px rgba(138,138,138,0.55);
+			-moz-box-shadow: 0px 2px 4px 1px rgba(138,138,138,0.55);
+			box-shadow: 0px 2px 4px 1px rgba(138,138,138,0.55);
+		}
+		a:hover {
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+
+	<!--Nav menu -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadowed">
+	  <a class="navbar-brand" href="/"><img src="https://pngimage.net/wp-content/uploads/2018/06/got-logo-png-4.png" height="24" width="64"></a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+	    <ul class="navbar-nav">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="/">Home
+	          <span class="sr-only"></span>
+	        </a>
+	      </li>
+	     <li class="nav-item">
+	        <a class="nav-link" href="../viewResults">Results</a>
+	      </li>
+	    <li>
+          <a href="/signup"><button class="btn btn-dark d-sm-block d-lg-none d-xl-none">Sign Up</button></a>
+          <a href="/login"><button class="btn btn-dark d-sm-block d-lg-none d-xl-none">Login</button></a>
+        </li>
+      </ul>
+    </div>
+    <a href="/signup"><button class="btn btn-dark  hidesmall d-sm-none d-xl-block" >Sign Up</button></a>&nbsp;
+    <a href="/login"><button class="btn btn-dark hidesmall d-sm-none d-xl-block" >Login</button></a>
+	</nav>
+	<!-- nav menu end --->
+ <div class="container">
+  <h2>Hi <span th:utext="${userName}"></span>, this is the home page.</h2>
+  <a th:href="@{/logout}">Sign out</a>
+ </div>
+</body>
+</html>
