@@ -1,5 +1,8 @@
 package deathpool.controller;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import deathpool.beans.Role;
 import deathpool.beans.User;
 import deathpool.repository.UserRepository;
 import deathpool.service.UserService;
@@ -69,8 +73,18 @@ public class UserController {
   ModelAndView model = new ModelAndView();
   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
   User user = userService.findUserByEmail(auth.getName());
+  Set<Role> roles = user.getRoles();
+  Boolean isAdmin = false;
+  for (Iterator<Role> i = roles.iterator(); i.hasNext();) {
+	  Role role = i.next();
+	  System.out.println(role.getRole());
+	  if (role.getRole().equals("ADMIN")) {
+		  isAdmin = true;
+	  }
+  }
   
   model.addObject("userName", user.getFirstname() + " " + user.getLastname());
+  model.addObject("isAdmin", isAdmin);
   model.setViewName("home/home");
   return model;
  }
@@ -88,5 +102,12 @@ public class UserController {
 		model.addAttribute("user", repo.findAll());
 		return "results";
 		}
+	
+	@GetMapping("/viewUsers")
+	public String viewAllUsers(Model model) {
+	model.addAttribute("user", repo.findAll());
+	return "allUsers";
+	}
+
 	
 }
