@@ -36,6 +36,10 @@
 	     <li class="nav-item">
 	        <a class="nav-link" href="../viewResults">Results</a>
 	      </li>
+	      
+	      <li th:if="${isAdmin == true}" class="nav-item">
+	        <a th:if="${isAdmin == true}" class="nav-link" href="../editUsers">Edit Users</a>
+	      </li>
 	    <li>
           <a href="/signup"><button class="btn btn-dark d-sm-block d-lg-none d-xl-none">Sign Up</button></a>
           <a href="/login"><button class="btn btn-dark d-sm-block d-lg-none d-xl-none">Login</button></a>
