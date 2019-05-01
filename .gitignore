@@ -27,3 +27,13 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+
+*.class
+*.project
+*persistence.xml
+.settings
+.classpath
+/bin/
+/build/
+/target/
+application.properties
